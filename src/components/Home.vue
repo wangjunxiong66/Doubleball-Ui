@@ -87,7 +87,7 @@
                     '203': 'iconfont icon-92',
                     '204': 'iconfont icon-yinliao1',
                     '301': 'iconfont icon-yinliao1',
-                    '302': 'iconfont icon-yinliao1',
+                    '302': 'iconfont icon-shangpin',
                     '303': 'iconfont icon-yinliao1',
                     '304': 'iconfont icon-yinliao1',
                     '401': 'iconfont icon-yinliao1',
