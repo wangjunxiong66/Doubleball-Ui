@@ -1,0 +1,50 @@
+body{
+    font-size: 16px;
+}
+a{
+    text-decoration: none;
+}
+#header{
+    width:100%;
+    height:40px;
+    /*background: red;*/
+}
+.header{
+    width:1200px;
+    height:40px;
+    /*background: green;*/
+    border: 1px solid red;
+}
+.header_left{
+    width:400px;
+    height:40px;
+    background: aqua;
+    float:left;
+}
+.header_right{
+    width:500px;
+    height:40px;
+    background: pink;
+    float:right;
+}
+.header_left>div{
+    /*background: red;*/
+    float:left;
+    /*  设置行间的距离（行高）。 */
+    line-height: 40px;
+    color: #8492A6;
+    /*border: 1px solid red;*/
+}
+.header_left>div>span{
+    /* 设置文本的粗细 */
+    font-weight: bold;
+}
+.header_left>div:nth-child(2)>a,.header_left>div:nth-child(2)>a>img{
+    float: left;
+    color: #8492A6;
+}
+.header_left>div:nth-child(2)>a>img{
+    width: 50px;
+    height: 40px;
+    /*border: 1px solid red;*/
+}
