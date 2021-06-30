@@ -114,7 +114,11 @@
                 <el-table-column label="作者" prop="author" width="100"></el-table-column>
                 <el-table-column label="朝代" prop="dynasty" width="60"></el-table-column>
                 <el-table-column label="诗歌类别" prop="category" width="100"></el-table-column>
-                <el-table-column label="内容" prop="content" width="180"></el-table-column>
+                <el-table-column label="内容" width="180">
+                    <template slot-scope="scope">
+                        <div v-html="scope.row.content.replace(/[\r\n]/g,'<br/>')"></div>
+                    </template>
+                </el-table-column>
                 <el-table-column label="注释" prop="comment" width="180"></el-table-column>
                 <el-table-column label="创建时间" prop="create_time" width="90"></el-table-column>
                 <el-table-column label="更新时间" prop="update_time" width="90"></el-table-column>
@@ -186,7 +190,7 @@
             <!--</span>-->
         </el-dialog>
 
-        <!--修改用户对话框-->
+        <!--修改对话框-->
         <el-dialog title="修改诗歌" :visible.sync="editDialogVisible" width="50%" @close="editDialogClosed" center>
             <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="80px">
                 <el-form-item label="序号" prop="id">
@@ -205,7 +209,8 @@
                     <el-input v-model="editForm.category" style="width: 90%"></el-input>
                 </el-form-item>
                 <el-form-item label="内容" prop="content">
-                    <el-input v-model="editForm.content" style="width: 90%"></el-input>
+                    <el-input  type="textarea" :rows="12" v-model="editForm.content" style="width: 90%"></el-input>
+                    <!--<el-input v-model="editForm.content" style="width: 90%"></el-input>-->
                 </el-form-item>
                 <el-form-item label="注释" prop="comment">
                     <el-input v-model="editForm.comment" style="width: 90%"></el-input>
@@ -234,14 +239,14 @@
             return{
                 //  查询诗歌
                 poemQueryInfo:{
-                    title: '',       // 诗歌名称
-                    author: '',       // 诗歌作者
-                    dynasty: '',       // 诗人朝代
-                    category: '',       // 诗歌类别
-                    content: '',       // 诗歌内容
-                    comment: '',       // 诗歌注释
-                    create_time: '',    //  创建时间
-                    update_time: '',    //  更新时间
+                    title: null,       // 诗歌名称
+                    author: null,       // 诗歌作者
+                    dynasty: null,       // 诗人朝代
+                    category: null,       // 诗歌类别
+                    content: null,       // 诗歌内容
+                    comment: null,       // 诗歌注释
+                    create_time: null,    //  创建时间
+                    update_time: null,    //  更新时间
                     pageNum: 1 ,     //  当前页
                     pageSize: 10   //  每页最大数
                 },
@@ -341,7 +346,7 @@
             //  获取诗歌
             async getPoemsList(){
                 const {data:res} = await this.$http.get("allpoem",{params:this.poemQueryInfo}) ;
-                console.log("res: "+res.data) ;
+                console.log("res: "+JSON.stringify(res.data)) ;
                 this.poemList = res.data;  // 诗歌列表数据封装
                 console.log("poemList: "+this.poemList) ;
                 this.total = res.numbers;  // 总诗歌数封装
