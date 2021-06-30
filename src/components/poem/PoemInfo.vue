@@ -105,7 +105,7 @@
                 </el-col>
             </el-row>
 
-            <!--双色球记录列表。border 边框。stripe 隔行变色。-->
+            <!--诗歌记录列表。border 边框。stripe 隔行变色。-->
             <!--stripe属性可以创建带斑马纹的表格。它接受一个Boolean，默认为false，设置为true即为启用。-->
             <el-table :data="poemList" border stripe style="width: 100%">   <!-- :data="用于存放请求数据回来的数组，是对象数组" -->
                 <!--<el-table-column type="index" label="排序"></el-table-column>    &lt;!&ndash; 索引列 &ndash;&gt;-->
@@ -284,7 +284,7 @@
                     ],
                     author: [
                         { required: true, message: '请输入作者', trigger: 'blur' },
-                        { min: 1, max: 40, message: '作者名称长度在 1 到 40 个字符之间', trigger: 'blur' }
+                        { min: 1, max: 200, message: '作者名称长度在 1 到 200 个字符之间', trigger: 'blur' }
                     ],
                     dynasty: [
                         { required: true, message: '请输入朝代', trigger: 'blur' },
@@ -300,7 +300,7 @@
                     ],
                     comment: [
                         { required: true, message: '请输入诗歌注释', trigger: 'blur' },
-                        { min: 1, max: 1000, message: '诗歌注释长度在 1 到 1000 个字符之间', trigger: 'blur' }
+                        { min: 1, max: 5000, message: '诗歌注释长度在 1 到 5000 个字符之间', trigger: 'blur' }
                     ]
                 },
                 //  修改诗歌表单验证
@@ -311,7 +311,7 @@
                     ],
                     author: [
                         { required: true, message: '请输入作者', trigger: 'blur' },
-                        { min: 1, max: 40, message: '作者名称长度在 1 到 40 个字符之间', trigger: 'blur' }
+                        { min: 1, max: 200, message: '作者名称长度在 1 到 200 个字符之间', trigger: 'blur' }
                     ],
                     dynasty: [
                         { required: true, message: '请输入朝代', trigger: 'blur' },
@@ -327,7 +327,7 @@
                     ],
                     comment: [
                         { required: true, message: '请输入诗歌注释', trigger: 'blur' },
-                        { min: 1, max: 1000, message: '诗歌注释长度在 1 到 1000 个字符之间', trigger: 'blur' }
+                        { min: 1, max: 5000, message: '诗歌注释长度在 1 到 5000 个字符之间', trigger: 'blur' }
                     ]
                 }
             }
@@ -346,7 +346,7 @@
             },
             //  获取诗歌
             async getPoemsList(){
-                const {data:res} = await this.$http.get("allpoem",{params:this.poemQueryInfo}) ;
+                const {data:res} = await this.$http.get("/poemapi/allpoem",{params:this.poemQueryInfo}) ;
                 console.log("res: "+JSON.stringify(res.data)) ;
                 this.poemList = res.data;  // 诗歌列表数据封装
                 console.log("poemList: "+this.poemList) ;
@@ -403,7 +403,7 @@
                                 type: 'warning',
                                 center: true
                             }).then(async () => {
-                            const {data:res} = await this.$http.post("addpoem",this.addForm) ;
+                            const {data:res} = await this.$http.post("/poemapi/addpoem",this.addForm) ;
                             if (res.code === 1) {
                                 //  下面两种形式都可以获取接口返回值信息
                                 // this.$message.error(res.data);
@@ -433,7 +433,7 @@
                 if (confirmResult!='confirm'){
                     return this.$message.info("已取消删除") ;
                 }
-                const {data:res} = await this.$http.delete("deletepoem?id="+id) ;
+                const {data:res} = await this.$http.delete("/poemapi/deletepoem?id="+id) ;
                 if (res.code === 0){
                     return this.$message.error("删除失败！！！")
                 }
@@ -444,7 +444,7 @@
             },
             //  显示编辑双色球记录的对话框
             async showEditDialog(id){
-                const {data:res} = await this.$http.get("getupdatepoem?id="+id) ;
+                const {data:res} = await this.$http.get("/poemapi/getupdatepoem?id="+id) ;
                 if (res.code !=1){
                     return this.$message.error("获取指定的诗歌失败！");
                 }
@@ -469,7 +469,7 @@
                                 type: 'warning',
                                 center: true
                             }).then(async () => {
-                            const {data:res} = await this.$http.put("editpoem",this.editForm) ;
+                            const {data:res} = await this.$http.put("/poemapi/editpoem",this.editForm) ;
                             if (res.code === 1) {
                                 this.$message.success("修改诗歌成功！");
                             }

@@ -140,7 +140,7 @@
                 //     _this.dataListRed = resp.data.bean.redballs
                 //     _this.dataListBlue = resp.data.bean.blueballs
                 //     _this.initChart()
-                    const {data:res} = await this.$http.get("/getstatisticsdivide")
+                    const {data:res} = await this.$http.get("/ballapi/getstatisticsdivide")
                     console.log("res.data.redballs"+res.data.redballs)
                     console.log("res.data.blueballs"+res.data.blueballs)
                     this.dataListRed = res.data.redballs

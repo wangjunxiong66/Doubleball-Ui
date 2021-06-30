@@ -319,7 +319,7 @@
         methods:{
             //  获取所有双色球记录
             async getBallsList(){
-                const {data:res} = await this.$http.get("allball",{params:this.queryInfo}) ;
+                const {data:res} = await this.$http.get("/ballapi/allball",{params:this.queryInfo}) ;
                 console.log("res: "+res.data) ;
                 this.ballList = res.data;  // 双色球列表数据封装
                 console.log("ballList: "+this.ballList) ;
@@ -376,7 +376,7 @@
                                 type: 'warning',
                                 center: true
                         }).then(async () => {
-                            const {data:res} = await this.$http.post("addball",this.addForm) ;
+                            const {data:res} = await this.$http.post("/ballapi/addball",this.addForm) ;
                             if (res.code === 2) {
                                 this.$message.error(res.data);
                             }
@@ -413,7 +413,7 @@
                 if (confirmResult!='confirm'){
                     return this.$message.info("已取消删除") ;
                 }
-                const {data:res} = await this.$http.delete("deleteball?id="+id) ;
+                const {data:res} = await this.$http.delete("/ballapi/deleteball?id="+id) ;
                 if (res.code === 0){
                     return this.$message.error("删除失败！！！")
                 }
@@ -424,7 +424,7 @@
             },
             //  显示编辑双色球记录的对话框
             async showEditDialog(id){
-                const {data:res} = await this.$http.get("getupdateball?id="+id) ;
+                const {data:res} = await this.$http.get("/ballapi/getupdateball?id="+id) ;
                 if (res.code !=1){
                     return this.$message.error("获取指定的双色球记录失败！");
                 }
@@ -459,7 +459,7 @@
                                 type: 'warning',
                                 center: true
                             }).then(async () => {
-                            const {data:res} = await this.$http.put("editball",this.editForm) ;
+                            const {data:res} = await this.$http.put("/ballapi/editball",this.editForm) ;
                             if (res.code === 1) {
                                 this.$message.success("修改双色球记录成功！");
                             }
@@ -480,7 +480,7 @@
                 // //  先把randomBall置空，否则在请求多次时会将数据一直累积
                 // this.randomBall = []
                 //  this.randomBall.push(resp.data) 意思是将对象resp.data  push进去，获得一个数组
-                const {data:res} = await this.$http.get("getrandomball") ;
+                const {data:res} = await this.$http.get("/ballapi/getrandomball") ;
                 this.randomBall = res.data
                 // 在需要显示的提示信息中，需要换行的地方分成数组 confirmText
                 const confirmText = ['下一期双色球记录可能是',`红球：${this.randomBall.red_one}  ${this.randomBall.red_two}  ${this.randomBall.red_three}  ${this.randomBall.red_four}  ${this.randomBall.red_five}  ${this.randomBall.red_six}`,`蓝球：${this.randomBall.blue}`]
@@ -512,7 +512,7 @@
             },
             //  统计双色球记录中各类球的统计数据
             async calculateBall(){
-                const {data:res} = await this.$http.get("calculateBall") ;
+                const {data:res} = await this.$http.get("/ballapi/calculateBall") ;
                 console.log("res.code   "+res.code)
                 if ( res.code === 0){
                     this.$message({
