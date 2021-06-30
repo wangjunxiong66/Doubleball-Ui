@@ -115,6 +115,7 @@
                 <el-table-column label="朝代" prop="dynasty" width="60"></el-table-column>
                 <el-table-column label="诗歌类别" prop="category" width="100"></el-table-column>
                 <el-table-column label="内容" width="180">
+                    <!--回车换行符号"\r\n"替换为"<br/>"，<br/>是html的标签，表示文本另起一行。-->
                     <template slot-scope="scope">
                         <div v-html="scope.row.content.replace(/[\r\n]/g,'<br/>')"></div>
                     </template>
