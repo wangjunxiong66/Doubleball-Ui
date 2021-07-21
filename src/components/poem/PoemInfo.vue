@@ -173,10 +173,12 @@
                     <el-input v-model="addForm.category" style="width: 90%"></el-input>
                 </el-form-item>
                 <el-form-item label="内容" prop="content">
-                    <el-input v-model="addForm.content" style="width: 90%"></el-input>
+                    <!--<el-input v-model="addForm.content" style="width: 90%"></el-input>-->
+                    <el-input  type="textarea" :rows="12" v-model="addForm.content" style="width: 90%"></el-input>
                 </el-form-item>
                 <el-form-item label="注释" prop="comment">
-                    <el-input v-model="addForm.comment" style="width: 90%"></el-input>
+                    <!--<el-input v-model="addForm.comment" style="width: 90%"></el-input>-->
+                    <el-input  type="textarea" :rows="12" v-model="addForm.comment" style="width: 90%"></el-input>
                 </el-form-item>
                 <el-form-item class="btns">
                     <el-button style="margin-left: 100px; margin-right: 110px" type="primary" @click="addPoem"><span v-html="'确 定'"></span></el-button>
@@ -214,7 +216,8 @@
                     <!--<el-input v-model="editForm.content" style="width: 90%"></el-input>-->
                 </el-form-item>
                 <el-form-item label="注释" prop="comment">
-                    <el-input v-model="editForm.comment" style="width: 90%"></el-input>
+                    <!--<el-input v-model="editForm.comment" style="width: 90%"></el-input>-->
+                    <el-input  type="textarea" :rows="12" v-model="editForm.comment" style="width: 90%"></el-input>
                 </el-form-item>
                 <el-form-item class="btns">
                     <el-button style="margin-left: 100px; margin-right: 110px" type="primary" @click="editPoemInfo"><span v-html="'确 定'"></span></el-button>
@@ -296,7 +299,7 @@
                     ],
                     content: [
                         { required: true, message: '请输入诗歌内容', trigger: 'blur' },
-                        { min: 1, max: 1000, message: '诗歌内容长度在 1 到 1000 个字符之间', trigger: 'blur' }
+                        { min: 1, max: 2000, message: '诗歌内容长度在 1 到 2000 个字符之间', trigger: 'blur' }
                     ],
                     comment: [
                         { required: true, message: '请输入诗歌注释', trigger: 'blur' },
@@ -323,7 +326,7 @@
                     ],
                     content: [
                         { required: true, message: '请输入诗歌内容', trigger: 'blur' },
-                        { min: 1, max: 1000, message: '诗歌内容长度在 1 到 1000 个字符之间', trigger: 'blur' }
+                        { min: 1, max: 2000, message: '诗歌内容长度在 1 到 2000 个字符之间', trigger: 'blur' }
                     ],
                     comment: [
                         { required: true, message: '请输入诗歌注释', trigger: 'blur' },
