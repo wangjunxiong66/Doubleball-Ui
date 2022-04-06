@@ -10,6 +10,8 @@ import ToolsList from '../components/tool/ToolsList.vue'
 import BallsListPie from  '../components/doubleball/BallsListPie'
 import BallsListBar from  '../components/doubleball/BallsListBar'
 import PoemInfo from '../components/poem/PoemInfo'
+import WriteToExcel from '../components/tool/WriteToExcel'
+
 
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter)
@@ -36,6 +38,7 @@ const routes = [
             {path:"/ballslistbar",component: BallsListBar},       //  双色球所有记录柱状图显示
             {path:"/alltools",component: ToolsList},              //  自制的一些小工具
             {path:"/poeminfo",component: PoemInfo},              //  诗歌相关
+            {path:"/writetoexcel",component: WriteToExcel},      //  excel相关
         ]
     }
 ]

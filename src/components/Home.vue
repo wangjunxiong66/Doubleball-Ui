@@ -75,22 +75,23 @@
                 isCollapse: false,  //  侧边栏伸缩
                 iconObject:{     //  罗列导航项的图标名称，这些图标由iconfont而来
                     '100': 'iconfont icon-denglu1',
-                    '200': 'iconfont icon-Sportsentertainment',
-                    '300': 'iconfont icon-Sportsentertainment',
-                    '400': 'iconfont icon-Sportsentertainment',
                     '101': 'iconfont icon-yinliao3',
                     '102': 'iconfont icon-baseball-bat',
                     '103': 'iconfont icon-jiudiancanting-',
                     '104': 'iconfont icon-shangpinkuozhan',
+                    '200': 'iconfont icon-Sportsentertainment',
                     '201': 'iconfont icon-shu',
                     '202': 'iconfont icon-qialuli',
                     '203': 'iconfont icon-92',
                     '204': 'iconfont icon-yinliao1',
+                    '300': 'iconfont icon-Sportsentertainment',
                     '301': 'iconfont icon-yinliao1',
                     '302': 'iconfont icon-shangpin',
                     '303': 'iconfont icon-yinliao1',
                     '304': 'iconfont icon-yinliao1',
+                    '400': 'iconfont icon-Sportsentertainment',
                     '401': 'iconfont icon-yinliao1',
+                    '402': 'iconfont icon-yinliao1',
                 },
                 activePath:'/welcome',  // 默认路径
             }
