@@ -3,36 +3,33 @@
         <div class="app-header">
             <h1>以下是导入商品上架Excel所必须填写的信息</h1>
         </div>
-        <el-form :model="onshelvesParamsForm" ref="onshelvesParamsForm" :rules="onshelvesParamsRules" :inline="true" label-width="120px">
+        <el-form :model="onsaleParamsForm" ref="onsaleParamsFormRef" :rules="onsaleParamsFormRules" :inline="true" label-width="120px">
             <el-collapse v-model="activeName" accordion>
                 <el-collapse-item title="公用信息" name="1">
-                    <div class="search-item">
-                        <div class="search-content">
-                            <el-form-item label="店铺ID" prop="shopid">
+                    <div class="common-info">
+                        <div class="common-content">
+                            <el-form-item label="店铺ID" prop="shop_id">
                                 <el-input
-                                        v-model="onshelvesParamsForm.shopid"
+                                        v-model="onsaleParamsForm.shop_id"
                                         placeholder="请输入店铺ID"
                                         size="small"
                                         style="width: 50px"
-                                        defaultVal="18"
                                 />
                             </el-form-item>
-                            <el-form-item label="规格类型" prop="spectype">
+                            <el-form-item label="规格类型" prop="spec_type">
                                 <el-input
-                                        v-model="onshelvesParamsForm.spectype"
+                                        v-model="onsaleParamsForm.spec_type"
                                         placeholder="请输入规格类型"
                                         size="small"
                                         style="width: 150px"
-                                        value="多规格"
                                 />
                             </el-form-item>
                             <el-form-item label="上架用序号" prop="issue">
                                 <el-input
-                                        v-model="onshelvesParamsForm.issue"
+                                        v-model="onsaleParamsForm.issue"
                                         placeholder="上架用序号"
                                         size="small"
                                         style="width: 200px"
-                                        value="20220402001"
                                 />
                             </el-form-item>
                         </div>
@@ -40,77 +37,417 @@
                 </el-collapse-item>
 
                 <el-collapse-item title="基础信息" name="2">
-                    <div class="search-item">
-                        <div class="search-content">
+                    <div class="basic-info">
+                        <div class="basic-content">
+                            <el-form-item label="商品类型" prop="product_type">
+                                <el-input
+                                        v-model="onsaleParamsForm.product_type"
+                                        placeholder="请输入商品类型"
+                                        size="small"
+                                        style="width: 250px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="商品名称" prop="product_name">
+                                <el-input
+                                        v-model="onsaleParamsForm.product_name"
+                                        placeholder="请输入商品名称"
+                                        size="small"
+                                        style="width: 250px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="副标题" prop="sub_product_name">
+                                <el-input
+                                        v-model="onsaleParamsForm.sub_product_name"
+                                        placeholder="请输入副标题"
+                                        size="small"
+                                        style="width: 250px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="主图张数" prop="main_picture_num">
+                                <el-input
+                                        v-model="onsaleParamsForm.main_picture_num"
+                                        placeholder="请输入商品主图张数"
+                                        size="small"
+                                        style="width: 250px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="轮播图张数" prop="carousel_figure_num">
+                                <el-input
+                                        v-model="onsaleParamsForm.carousel_figure_num"
+                                        placeholder="请输入商品轮播图张数"
+                                        size="small"
+                                        style="width: 250px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="分类一级" prop="first_category_name">
+                                <el-input
+                                        v-model="onsaleParamsForm.first_category_name"
+                                        placeholder="请输入商品分类一级"
+                                        size="small"
+                                        style="width: 250px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="分类二级" prop="secondary_category_name">
+                                <el-input
+                                        v-model="onsaleParamsForm.secondary_category_name"
+                                        placeholder="请输入商品分类二级"
+                                        size="small"
+                                        style="width: 250px"
+                                />
+                            </el-form-item>
+                            </el-form-item>
+                            <el-form-item label="短标题" prop="short_name">
+                                <el-input
+                                        v-model="onsaleParamsForm.short_name"
+                                        placeholder="请输入商品短标题"
+                                        size="small"
+                                        style="width: 250px"
+                                />
+                            </el-form-item>
+                            </el-form-item>
+                            <el-form-item label="分组" prop="group">
+                                <el-input
+                                        v-model="onsaleParamsForm.group"
+                                        placeholder="请输入商品分组"
+                                        size="small"
+                                        style="width: 250px"
+                                />
+                            </el-form-item>
+                            </el-form-item>
+                            <el-form-item label="支持" prop="label">
+                                <el-input
+                                        v-model="onsaleParamsForm.label"
+                                        placeholder="请输入商品支持"
+                                        size="small"
+                                        style="width: 250px"
+                                />
+                            </el-form-item>
                         </div>
                     </div>
                 </el-collapse-item>
 
                 <el-collapse-item title="价格库存" name="3">
-                    <div class="search-item">
-                        <div class="search-content">
+                    <div class="price-stock">
+                        <div class="price-stock-content">
+                            <el-form-item label="商品规格" prop="good_specification">
+                                <el-input
+                                        v-model="onsaleParamsForm.good_specification"
+                                        placeholder="商品规格"
+                                        size="small"
+                                        style="width: 100px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="礼包内商品编码" prop="peck_gift_good_code" label-width="200px">
+                                <el-input
+                                        v-model="onsaleParamsForm.peck_gift_good_code"
+                                        placeholder="礼包内商品编码"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="规格" prop="product_spec">
+                                <el-input
+                                        v-model="onsaleParamsForm.product_spec"
+                                        placeholder="规格"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="子规格" prop="product_spec_item">
+                                <el-input
+                                        v-model="onsaleParamsForm.product_spec_item"
+                                        placeholder="子规格"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="规格图张数" prop="spec_picture__num">
+                                <el-input
+                                        v-model="onsaleParamsForm.spec_picture__num"
+                                        placeholder="规格图张数"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="售卖价格" prop="selling_price">
+                                <el-input
+                                        v-model="onsaleParamsForm.selling_price"
+                                        placeholder="售卖价格"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="划线价" prop="original_price">
+                                <el-input
+                                        v-model="onsaleParamsForm.original_price"
+                                        placeholder="划线价"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="成本价" prop="cost_price">
+                                <el-input
+                                        v-model="onsaleParamsForm.cost_price"
+                                        placeholder="成本价"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="库存量" prop="stock">
+                                <el-input
+                                        v-model="onsaleParamsForm.stock"
+                                        placeholder="库存量"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="库存预警" prop="stock_warning">
+                                <el-input
+                                        v-model="onsaleParamsForm.stock_warning"
+                                        placeholder="库存预警"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="商品编码" prop="product_code">
+                                <el-input
+                                        v-model="onsaleParamsForm.product_code"
+                                        placeholder="商品编码"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="商品条形码" prop="product_sn">
+                                <el-input
+                                        v-model="onsaleParamsForm.product_sn"
+                                        placeholder="商品条形码"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="商品详情显示库存" prop="stock_hide" label-width="160px">
+                                <el-input
+                                        v-model="onsaleParamsForm.stock_hide"
+                                        placeholder="商品详情显示库存"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="已出售数" prop="virtual_sales">
+                                <el-input
+                                        v-model="onsaleParamsForm.virtual_sales"
+                                        placeholder="已出售数"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="商品详情显示销量" prop="sales_hide" label-width="160px">
+                                <el-input
+                                        v-model="onsaleParamsForm.sales_hide"
+                                        placeholder="商品详情显示销量"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
                         </div>
                     </div>
                 </el-collapse-item>
 
                 <el-collapse-item title="物流设置" name="4">
-                    <div class="search-item">
-                        <div class="search-content">
+                    <div class="logistics">
+                        <div class="logistics-content">
+                            <el-form-item label="物流支持" prop="dispatch_mode">
+                                <el-input
+                                        v-model="onsaleParamsForm.dispatch_mode"
+                                        placeholder="物流支持"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="快递运费" prop="express_price">
+                                <el-input
+                                        v-model="onsaleParamsForm.express_price"
+                                        placeholder="快递运费"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="运费模板" prop="express_template">
+                                <el-input
+                                        v-model="onsaleParamsForm.express_template"
+                                        placeholder="运费模板"
+                                        size="small"
+                                        style="width: 300px"
+                                />
+                            </el-form-item>
                         </div>
                     </div>
                 </el-collapse-item>
 
                 <el-collapse-item title="其他设置" name="5">
-                    <div class="search-item">
-                        <div class="search-content">
+                    <div class="others">
+                        <div class="others-content">
+                            <el-form-item label="定时下架" prop="auto_warehouse_time">
+                                <el-date-picker
+                                        v-model="onsaleParamsForm.auto_warehouse_time"
+                                        type="datetime"
+                                        placeholder="请选择商品定时下架时间"
+                                        value-format="yyyy-MM-dd HH:mm:ss"
+                                        default-time="00:00:00">
+                                </el-date-picker>
+                            </el-form-item>
+                            <el-form-item label="状态" prop="status">
+                                <el-input
+                                        v-model="onsaleParamsForm.status"
+                                        placeholder="状态"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="开启限购" prop="is_buy_num_limit">
+                                <el-input
+                                        v-model="onsaleParamsForm.is_buy_num_limit"
+                                        placeholder="开启限购"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="起购数量" prop="min_buy">
+                                <el-input
+                                        v-model="onsaleParamsForm.min_buy"
+                                        placeholder="起购数量"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="每人限购数量" prop="max_buy_total">
+                                <el-input
+                                        v-model="onsaleParamsForm.max_buy_total"
+                                        placeholder="每人限购数量"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="浏览权限" prop="browse_authority">
+                                <el-input
+                                        v-model="onsaleParamsForm.browse_authority"
+                                        placeholder="浏览权限"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="购买权限" prop="buy_authority">
+                                <el-input
+                                        v-model="onsaleParamsForm.buy_authority"
+                                        placeholder="购买权限"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="参与会员权益" prop="join_member_discount">
+                                <el-input
+                                        v-model="onsaleParamsForm.join_member_discount"
+                                        placeholder="参与会员权益"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
                         </div>
                     </div>
                 </el-collapse-item>
 
                 <el-collapse-item title="商品详情" name="6">
-                    <div class="search-item">
-                        <div class="search-content">
+                    <div class="goods-detail">
+                        <div class="goods-detail-content">
+                            <el-form-item label="推广图文件名" prop="promotion_diagram_name">
+                                <el-input
+                                        v-model="onsaleParamsForm.promotion_diagram_name"
+                                        placeholder="推广图文件名"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="推广图链接" prop="promotion_diagram_link">
+                                <el-input
+                                        v-model="onsaleParamsForm.promotion_diagram_link"
+                                        placeholder="推广图链接"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="推广图会员等级是否展示" prop="promotion_diagram_degree">
+                                <el-input
+                                        v-model="onsaleParamsForm.promotion_diagram_degree"
+                                        placeholder="推广图会员等级是否展示"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="商品详情图张数" prop="detailed_diagram_num">
+                                <el-input
+                                        v-model="onsaleParamsForm.detailed_diagram_num"
+                                        placeholder="商品详情图张数"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="授权图文件名" prop="authorize_diagram_name">
+                                <el-input
+                                        v-model="onsaleParamsForm.authorize_diagram_name"
+                                        placeholder="授权图文件名"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="公用图文件名" prop="common_diagram_name">
+                                <el-input
+                                        v-model="onsaleParamsForm.common_diagram_name"
+                                        placeholder="公用图文件名"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
                         </div>
                     </div>
                 </el-collapse-item>
 
                 <el-collapse-item title="积分抵扣活动设置" name="7">
-                    <div class="search-item">
-                        <div class="search-content">
-                            <el-form-item label="活动名称" prop="acitvityname">
+                    <div class="credit-activity">
+                        <div class="credit-activity-content1">
+                            <el-form-item label="活动名称" prop="activity_name">
                                 <el-input
-                                        v-model="onshelvesParamsForm.acitvityname"
+                                        v-model="onsaleParamsForm.activity_name"
                                         placeholder="请输入活动名称"
                                         size="small"
                                         style="width: 200px"
                                 />
                             </el-form-item>
-                            <el-form-item label="活动渠道" prop="acitvitychannel">
+                            <el-form-item label="活动渠道" prop="activity_channel">
                                 <el-input
-                                        v-model="onshelvesParamsForm.acitvitychannel"
+                                        v-model="onsaleParamsForm.activity_channel"
                                         placeholder="请输入活动渠道"
                                         size="small"
-                                        style="width: 200px"
+                                        style="width: 100px"
                                 />
                             </el-form-item>
-                            <el-form-item label="活动开始时间" prop="acitvitystarttime" >   <!-- label-width="200px"  -->
+                        </div>
+                        <div class="credit-activity-content2">
+                            <el-form-item label="活动开始时间" prop="activity_start_time">
                                 <el-date-picker
-                                        v-model="onshelvesParamsForm.acitvitystarttime"
+                                        v-model="onsaleParamsForm.activity_start_time"
                                         type="datetime"
-                                        size="small"
-                                        style="width: 200px"
-                                        placeholder="活动开始时间"
-                                        value-format="yyyy-MM-dd HH:mm:ss">
+                                        placeholder="请选择活动开始时间"
+                                        value-format="yyyy-MM-dd HH:mm:ss"
+                                        default-time="00:00:00">
                                 </el-date-picker>
                             </el-form-item>
-                            <el-form-item label="活动结束时间" prop="acitvityendtime" >     <!-- label-width="200px"  -->
+                            <el-form-item label="活动结束时间" prop="activity_end_time">
                                 <el-date-picker
-                                        v-model="onshelvesParamsForm.acitvityendtime"
+                                        v-model="onsaleParamsForm.activity_end_time"
                                         type="datetime"
-                                        size="small"
-                                        style="width: 200px"
-                                        placeholder="活动结束时间"
-                                        value-format="yyyy-MM-dd HH:mm:ss">
+                                        placeholder="请选择活动结束时间"
+                                        value-format="yyyy-MM-dd HH:mm:ss"
+                                        default-time="23:59:59">
                                 </el-date-picker>
                             </el-form-item>
                         </div>
@@ -118,8 +455,42 @@
                 </el-collapse-item>
 
                 <el-collapse-item title="规则设置" name="8">
-                    <div class="search-item">
-                        <div class="search-content">
+                    <div class="rule-set">
+                        <div class="rule-set-content">
+                            <el-form-item label="规则1活动对象" prop="activity_object">
+                                <el-input
+                                        v-model="onsaleParamsForm.activity_object"
+                                        placeholder="规则1活动对象"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="规则1会员等级" prop="member_degree">
+                                <el-input
+                                        v-model="onsaleParamsForm.member_degree"
+                                        placeholder="规则1会员等级"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                        </div>
+                        <div class="rule-set-content">
+                            <el-form-item label="规则1最大积分抵扣" prop="credit" label-width="300">
+                                <el-input
+                                        v-model="onsaleParamsForm.credit"
+                                        placeholder="规则1最大积分抵扣"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
+                            <el-form-item label="规则1允许多件累计抵扣" prop="allow_accumulate" label-width="300">
+                                <el-input
+                                        v-model="onsaleParamsForm.allow_accumulate"
+                                        placeholder="规则1允许多件累计抵扣"
+                                        size="small"
+                                        style="width: 200px"
+                                />
+                            </el-form-item>
                         </div>
                     </div>
                 </el-collapse-item>
@@ -127,8 +498,8 @@
             <el-form-item>
                 <!--<el-button type="cyan" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>-->
                 <!--<el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>-->
-                <el-button type="cyan" icon="el-icon-search" size="mini">搜索</el-button>
-                <el-button icon="el-icon-refresh" size="mini">重置</el-button>
+                <el-button type="cyan" icon="el-icon-search" size="mini" @click="submitOnsaleParamsForm">提交</el-button>
+                <el-button icon="el-icon-refresh" size="mini" @click="resetOnsaleParamsForm">重置</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -142,38 +513,230 @@
         data() {
             return {
                 activeName: '1',       //  对应折叠组件el-collapse的v-model，因为是accordion手风琴模式，所以应该是String类型
-                onshelvesParamsForm: {
-                    shopid: "8",
-                    spectype: "多规格类型",
-                    issue: "20220402002",
-                    acitvityname: "active-name",    //  活动名称
-                    acitvitystarttime: "",    //  活动开始时间
-                    acitvityendtime:  "",   //  活动结束时间
-                    acitvitychannel: "H5",    //  活动渠道
+                onsaleParamsForm: {
+                    //  设置上架商品公用信息-----设置上架商品公用信息-----设置上架商品公用信息-----设置上架商品公用信息
+                    shop_id: "8",                //  店铺ID
+                    spec_type: "多规格类型",      //  规格类型
+                    issue: "20220402002",         //  上架用序号
+                    //  基础信息-----基础信息-----基础信息-----基础信息-----基础信息-----基础信息-----基础信息
+                    product_type: "实体商品",     //  商品类型
+                    product_name: "成声波人电动牙刷P7-多规格商品3个商品",      //  商品名称
+                    sub_product_name: "成声波人电动牙刷P7",        //  商品副标题
+                    main_picture_num: 1,        //  商品主图张数
+                    carousel_figure_num: 2,     //  商品轮播图张数
+                    first_category_name: "日化百货",          //  商品分类一级
+                    secondary_category_name: "居家百货",     //  商品分类二级
+                    short_name: "成声波人电动牙刷-多规格3个商品",         //  商品短标题
+                    group: "小额消耗品",         //  商品分组
+                    label: "质量问题包赔",       //  商品支持
+                    //  价格库存-----价格库存-----价格库存-----价格库存-----价格库存-----价格库存-----价格库存
+                    good_specification: "多规格商品",        //  商品规格
+                    peck_gift_good_code: "",        //  礼包内商品编码
+                    product_spec: "颜色",        //  规格
+                    product_spec_item: "红色",      //  子规格
+                    spec_picture__num: "1",     //  规格图张数
+                    selling_price: "250",           //  售卖价格
+                    original_price: "260",      //  划线价
+                    cost_price: "270",     //  成本价
+                    stock: "10000",      //  库存量
+                    stock_warning: "10",       //  库存预警
+                    product_code: "0002-000089-01",       //  商品编码
+                    product_sn: "000200008901",        //  商品条形码
+                    stock_hide: "显示",        //  商品详情显示库存，显示或隐藏
+                    virtual_sales: "20",        //  已出售数
+                    sales_hide: "隐藏",         //  商品详情显示销量，显示或隐藏
+                    //  物流设置-----物流设置-----物流设置-----物流设置-----物流设置-----物流设置-----物流设置
+                    dispatch_mode: "快递发货",       //  物流支持，快递发货、同城配送、上门自提
+                    express_price: "运费模板/统一运费",        //  快递运费，“统一运费”或者“运费模板”
+                    express_template: "全国一件包邮运费模板/统一运费价格",       //  运费模板，取自数据库
+                    //  其他设置-----其他设置-----其他设置-----其他设置-----其他设置-----其他设置-----其他设置
+                    auto_warehouse_time: "",         //  定时下架
+                    status: "上架售卖",        //  状态，上架售卖、上架隐藏、定时上架、放置仓库
+                    is_buy_num_limit: "是",      //  开启限购，是或否
+                    min_buy: "3",        //  起购数量
+                    max_buy_total: "100",       //  每人限购数量
+                    browse_authority: "普通会员",         //  浏览权限
+                    buy_authority: "会员",        //  购买权限
+                    join_member_discount: "会员卡",       //  参与会员权益，会员卡、会员价、会员等级折扣
+                    //  商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情
+                    promotion_diagram_name: "tgt1.png",       //  推广图文件名
+                    promotion_diagram_link: "http://www.baidu.com",         //  推广图链接
+                    promotion_diagram_degree: "全部会员",       //  推广图会员等级是否展示
+                    detailed_diagram_num:  2,      //  商品详情图张数
+                    authorize_diagram_name: "sqt1.jpg",        //  授权图文件名
+                    common_diagram_name: "gyt1.png",         //  公用图文件名
+
+                    //  积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置
+                    activity_name: "活动名称",    //  活动名称
+                    activity_start_time: "",          //  活动开始时间
+                    activity_end_time: "",            //  活动结束时间
+                    activity_channel: "H5",    //  活动渠道
+                    //  规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置
+                    activity_object: "会员等级",         //  规则1活动对象，全部会员、会员等级、会员标签
+                    member_degree: "会员",        //  规则1会员等级
+                    credit: "500",        //  规则1最大积分抵扣
+                    allow_accumulate: "是",        //  规则1允许多件累计抵扣
                 },
-                onshelvesParamsRules: {
-                    shopid: [
+                onsaleParamsFormRules: {
+                    shop_id: [
                         {required: true, message: '请输入店铺ID', trigger: 'blur'}
                     ],
-                    spectype: [
+                    spec_type: [
                         {required: true, message: '请输入规格类型', trigger: 'blur'}
                     ],
                     issue: [
                         {required: true, message: '请输入上架用序号', trigger: 'blur'}
                     ],
-                    acitvityname: [
+                    product_type: [
+                        {required: true, message: '请输入商品类型', trigger: 'blur'}
+                    ],
+                    product_name: [
+                        {required: true, message: '请输入商品名称', trigger: 'blur'}
+                    ],
+                    sub_product_name: [
+                        {required: true, message: '请输入商品副标题', trigger: 'blur'}
+                    ],
+                    main_picture_num: [
+                        {required: true, message: '请输入商品主图张数', trigger: 'blur'}
+                    ],
+                    carousel_figure_num: [
+                        {required: true, message: '请输入商品轮播图张数', trigger: 'blur'}
+                    ],
+                    first_category_name: [
+                        {required: true, message: '请输入商品分类一级', trigger: 'blur'}
+                    ],
+                    secondary_category_name: [
+                        {required: true, message: '请输入商品分类二级', trigger: 'blur'}
+                    ],
+                    short_name: [
+                        {required: true, message: '请输入商品短标题', trigger: 'blur'}
+                    ],
+                    group: [
+                        {required: true, message: '请输入商品分组', trigger: 'blur'}
+                    ],
+                    label: [
+                        {required: true, message: '请输入商品支持', trigger: 'blur'}
+                    ],
+                    good_specification: [
+                        {required: true, message: '请输入商品规格', trigger: 'blur'}
+                    ],
+                    // peck_gift_good_code: [
+                    //     {required: true, message: '请输入礼包内商品编码', trigger: 'blur'}
+                    // ],
+                    // product_spec: [
+                    //     {required: true, message: '请输入规格', trigger: 'blur'}
+                    // ],
+                    // product_spec_item: [
+                    //     {required: true, message: '请输入子规格', trigger: 'blur'}
+                    // ],
+                    spec_picture__num: [
+                        {required: true, message: '请输入规格图张数', trigger: 'blur'}
+                    ],
+                    selling_price: [
+                        {required: true, message: '请输入售卖价格', trigger: 'blur'}
+                    ],
+                    original_price: [
+                        {required: true, message: '请输入划线价', trigger: 'blur'}
+                    ],
+                    cost_price: [
+                        {required: true, message: '请输入成本价', trigger: 'blur'}
+                    ],
+                    stock: [
+                        {required: true, message: '请输入库存量', trigger: 'blur'}
+                    ],
+                    stock_warning: [
+                        {required: true, message: '请输入库存预警', trigger: 'blur'}
+                    ],
+                    product_code: [
+                        {required: true, message: '请输入商品编码', trigger: 'blur'}
+                    ],
+                    product_sn: [
+                        {required: true, message: '请输入商品条形码', trigger: 'blur'}
+                    ],
+                    stock_hide: [
+                        {required: true, message: '请输入商品详情显示库存', trigger: 'blur'}
+                    ],
+                    virtual_sales: [
+                        {required: true, message: '请输入已出售数', trigger: 'blur'}
+                    ],
+                    sales_hide: [
+                        {required: true, message: '请输入商品详情显示销量', trigger: 'blur'}
+                    ],
+                    dispatch_mode: [
+                        {required: true, message: '请输入快递发货', trigger: 'blur'}
+                    ],
+                    express_price: [
+                        {required: true, message: '请输入运费模板/统一运费', trigger: 'blur'}
+                    ],
+                    express_template: [
+                        {required: true, message: '请输入运费模板内容或者统一运费价格', trigger: 'blur'}
+                    ],
+
+                    auto_warehouse_time: [
+                        {required: true, message: '请输入定时下架', trigger: 'blur'}
+                    ],
+                    status: [
+                        {required: true, message: '请输入状态', trigger: 'blur'}
+                    ],
+                    is_buy_num_limit: [
+                        {required: true, message: '请输入开启限购', trigger: 'blur'}
+                    ],
+                    min_buy: [
+                        {required: true, message: '请输入起购数量', trigger: 'blur'}
+                    ],
+                    max_buy_total: [
+                        {required: true, message: '请输入每人限购数量', trigger: 'blur'}
+                    ],
+                    browse_authority: [
+                        {required: true, message: '请输入浏览权限', trigger: 'blur'}
+                    ],
+                    buy_authority: [
+                        {required: true, message: '请输入购买权限', trigger: 'blur'}
+                    ],
+                    join_member_discount: [
+                        {required: true, message: '请输入参与会员权益', trigger: 'blur'}
+                    ],
+                    promotion_diagram_name: [
+                        {required: true, message: '请输入推广图文件名', trigger: 'blur'}
+                    ],
+                    promotion_diagram_link: [
+                        {required: true, message: '请输入推广图链接', trigger: 'blur'}
+                    ],
+                    promotion_diagram_degree: [
+                        {required: true, message: '请输入推广图会员等级是否展示', trigger: 'blur'}
+                    ],
+                    detailed_diagram_num: [
+                        {required: true, message: '请输入商品详情图张数', trigger: 'blur'}
+                    ],
+                    authorize_diagram_name: [
+                        {required: true, message: '请输入授权图文件名', trigger: 'blur'}
+                    ],
+                    common_diagram_name: [
+                        {required: true, message: '请输入公用图文件名', trigger: 'blur'}
+                    ],
+                    activity_name: [
                         {required: true, message: '请输入活动名称', trigger: 'blur'}
                     ],
-                    acitvitystarttime: [
-                        {required: true, message: '请输入活动开始时间', trigger: 'blur'},
-                        // {required: true, validator: validate.validateStartTime(), trigger: 'blur' }
+                    activity_start_time: [
+                        {required: true, message: '请选择活动开始时间', trigger: 'blur'},
                     ],
-                    acitvityendtime: [
-                        {required: true, message: '请输入活动结束时间', trigger: 'blur'},
-                        // { required: true, validator: validate.validateEndTime(), trigger: 'blur' }
+                    activity_end_time: [
+                        {required: true, message: '请选择活动结束时间', trigger: 'blur'},
                     ],
-                    acitvitychannel: [
+                    activity_channel: [
                         {required: true, message: '请输入活动渠道', trigger: 'blur'}
+                    ],
+                    activity_object: [
+                        {required: true, message: '请输入规则1活动对象', trigger: 'blur'}
+                    ],
+                    member_degree: [
+                        {required: true, message: '请输入规则1会员等级', trigger: 'blur'}
+                    ],
+                    credit: [
+                        {required: true, message: '请输入规则1最大积分抵扣', trigger: 'blur'}
+                    ],
+                    allow_accumulate: [
+                        {required: true, message: '请输入规则1允许多件累计抵扣', trigger: 'blur'}
                     ]
                 },
             };
@@ -183,6 +746,32 @@
         watch: {
         },
         methods: {
+            //  重置表单内容
+            resetOnsaleParamsForm(){
+                // 重置表单各项为初始值，方法为 resetFields()
+                this.$refs.onsaleParamsFormRef.resetFields();  // 也可以这样写  this.$refs['loginFormRef'].resetFields();
+            },
+            submitOnsaleParamsForm(){
+                //  1.验证校验规则
+                //  validate中有一个回调函数，回调函数的参数valid是布尔值，表示表单是否验证通过，正确则返回true，否则返回false。
+                this.$refs.onsaleParamsFormRef.validate(async (valid) =>{
+                    if (!valid) return ;
+                    const {data:res} = await this.$http.post("/excelOP/writeto",this.onsaleParamsForm) ;
+                    if (res.code=="OK"){
+                        //  弹出提示信息
+                        this.$message.success("写入Excel成功！");
+                        //  setTimeout() 方法用于在指定的毫秒数后调用函数或计算表达式。
+                        //  此处设置延迟，待写入Excel后刷新页面
+                        setTimeout(() => {
+                            //  this.$router.push({path:"/home"})或者 this.$router.push("/home")用来在点击按钮时跳转到路径"/home"指定的vue模块
+                            this.$router.push({path:"/writetoexcel"});  //  页面路由跳转
+                        }, 3000)
+                    }else {
+                        this.$message.error("写入Excel失败！");
+                    }
+                })
+            },
+
         }
     };
 </script>

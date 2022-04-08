@@ -77,7 +77,7 @@
                 //  validate中有一个回调函数，回调函数的参数valid是布尔值，表示表单是否验证通过，正确则返回true，否则返回false。
                 this.$refs.loginFormRef.validate(async (valid) =>{
                     if (!valid) return ;
-                    this.loading = true;
+                    this.loading = true;  //  登录状态对的区分
                     const {data:res} = await this.$http.post("login",this.loginForm)
                     if (res.flag=="ok"){
                         //  弹出提示信息
