@@ -95,7 +95,6 @@
                                         style="width: 250px"
                                 />
                             </el-form-item>
-                            </el-form-item>
                             <el-form-item label="短标题" prop="short_name">
                                 <el-input
                                         v-model="onsaleParamsForm.short_name"
@@ -104,15 +103,23 @@
                                         style="width: 250px"
                                 />
                             </el-form-item>
-                            </el-form-item>
+                            <!--<el-form-item label="分组" prop="group">-->
+                                <!--<el-input-->
+                                        <!--v-model="onsaleParamsForm.group"-->
+                                        <!--placeholder="请输入商品分组"-->
+                                        <!--size="small"-->
+                                        <!--style="width: 250px"-->
+                                <!--/>-->
+                            <!--</el-form-item>-->
                             <el-form-item label="分组" prop="group">
-                                <el-input
-                                        v-model="onsaleParamsForm.group"
-                                        placeholder="请输入商品分组"
-                                        size="small"
-                                        style="width: 250px"
-                                />
-                            </el-form-item>
+                                <el-select v-model="onsaleParamsForm.group" placeholder="请选择分组" clearable multiple>
+                                    <el-option
+                                            v-for="item in groupOptions"
+                                            :key="item.name"
+                                            :label="item.name"
+                                            :value="item.name" />
+                                    </el-option>
+                                </el-select>
                             </el-form-item>
                             <el-form-item label="支持" prop="label">
                                 <el-input
@@ -210,12 +217,20 @@
                                 />
                             </el-form-item>
                             <el-form-item label="商品编码" prop="product_code">
-                                <el-input
-                                        v-model="onsaleParamsForm.product_code"
-                                        placeholder="商品编码"
-                                        size="small"
-                                        style="width: 200px"
-                                />
+                                <!--<el-input-->
+                                        <!--v-model="onsaleParamsForm.product_code"-->
+                                        <!--placeholder="商品编码"-->
+                                        <!--size="small"-->
+                                        <!--style="width: 200px"-->
+                                <!--/>-->
+                                <el-select v-model="onsaleParamsForm.product_code" placeholder="请选择商品编码" clearable>
+                                    <el-option
+                                            v-for="item in product_codeOptions"
+                                            :key="item.name"
+                                            :label="item.name"
+                                            :value="item.name" />
+                                    </el-option>
+                                </el-select>
                             </el-form-item>
                             <el-form-item label="商品条形码" prop="product_sn">
                                 <el-input
@@ -513,6 +528,8 @@
         data() {
             return {
                 activeName: '1',       //  对应折叠组件el-collapse的v-model，因为是accordion手风琴模式，所以应该是String类型
+                groupOptions: [],
+                product_codeOptions: [],
                 onsaleParamsForm: {
                     //  设置上架商品公用信息-----设置上架商品公用信息-----设置上架商品公用信息-----设置上架商品公用信息
                     shop_id: "8",                //  店铺ID
@@ -527,7 +544,7 @@
                     first_category_name: "日化百货",          //  商品分类一级
                     secondary_category_name: "居家百货",     //  商品分类二级
                     short_name: "成声波人电动牙刷-多规格3个商品",         //  商品短标题
-                    group: "小额消耗品",         //  商品分组
+                    group: null,         //  商品分组   "小额消耗品"
                     label: "质量问题包赔",       //  商品支持
                     //  价格库存-----价格库存-----价格库存-----价格库存-----价格库存-----价格库存-----价格库存
                     good_specification: "多规格商品",        //  商品规格
@@ -540,7 +557,7 @@
                     cost_price: "270",     //  成本价
                     stock: "10000",      //  库存量
                     stock_warning: "10",       //  库存预警
-                    product_code: "0002-000089-01",       //  商品编码
+                    product_code: null,       //  商品编码
                     product_sn: "000200008901",        //  商品条形码
                     stock_hide: "显示",        //  商品详情显示库存，显示或隐藏
                     virtual_sales: "20",        //  已出售数
@@ -612,7 +629,7 @@
                         {required: true, message: '请输入商品短标题', trigger: 'blur'}
                     ],
                     group: [
-                        {required: true, message: '请输入商品分组', trigger: 'blur'}
+                        {required: true, message: '请选择商品分组', trigger: 'blur'}
                     ],
                     label: [
                         {required: true, message: '请输入商品支持', trigger: 'blur'}
@@ -742,22 +759,40 @@
             };
         },
         created() {
+            this.getProductinfo() ;
+
         },
         watch: {
         },
         methods: {
+            //  在进入导入商品上架Excel信息页面时加载一些基础信息
+            async getProductinfo(){
+                const {data:res} = await this.$http.get("/excelOP/loading") ;
+                // console.log("res: "+res);
+                this.groupOptions = res.group ;
+                this.product_codeOptions = res.product_code ;
+                // this.ballList = res.data;  // 双色球列表数据封装
+                // console.log("ballList: "+this.ballList) ;
+                // this.total = res.numbers;  // 总双色球数封装
+
+            },
             //  重置表单内容
             resetOnsaleParamsForm(){
                 // 重置表单各项为初始值，方法为 resetFields()
                 this.$refs.onsaleParamsFormRef.resetFields();  // 也可以这样写  this.$refs['loginFormRef'].resetFields();
             },
             submitOnsaleParamsForm(){
+                //  因为提交时group是按照字符串提交的，当分组group是多选时，需要将字符串转换成单个字符才能提交到接口
+                var str = this.onsaleParamsForm.group.join(",");
+                console.log(str);
+                this.onsaleParamsForm.group = str ;
                 //  1.验证校验规则
                 //  validate中有一个回调函数，回调函数的参数valid是布尔值，表示表单是否验证通过，正确则返回true，否则返回false。
                 this.$refs.onsaleParamsFormRef.validate(async (valid) =>{
                     if (!valid) return ;
                     const {data:res} = await this.$http.post("/excelOP/writeto",this.onsaleParamsForm) ;
-                    if (res.code=="OK"){
+                    console.log(res);
+                    if (res.code=="1"){
                         //  弹出提示信息
                         this.$message.success("写入Excel成功！");
                         //  setTimeout() 方法用于在指定的毫秒数后调用函数或计算表达式。
