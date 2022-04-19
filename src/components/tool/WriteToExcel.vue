@@ -80,20 +80,46 @@
                                 />
                             </el-form-item>
                             <el-form-item label="分类一级" prop="first_category_name">
-                                <el-input
-                                        v-model="onsaleParamsForm.first_category_name"
-                                        placeholder="请输入商品分类一级"
-                                        size="small"
-                                        style="width: 250px"
-                                />
+                                <!--<el-input-->
+                                        <!--v-model="onsaleParamsForm.first_category_name"-->
+                                        <!--placeholder="请输入商品分类一级"-->
+                                        <!--size="small"-->
+                                        <!--style="width: 250px"-->
+                                <!--/>-->
+                                <el-select v-model="onsaleParamsForm.first_category_name"
+                                           placeholder="请选择商品一级分类"
+                                           clearable
+                                           size="small"
+                                           style="width: 250px"
+                                           @change="firstCategoryChange"
+                                >
+                                    <el-option
+                                            v-for="item in first_category_name_Options"
+                                            :key="item.id"
+                                            :label="item.name"
+                                            :value="item.id"
+                                    />
+                                </el-select>
                             </el-form-item>
                             <el-form-item label="分类二级" prop="secondary_category_name">
-                                <el-input
-                                        v-model="onsaleParamsForm.secondary_category_name"
-                                        placeholder="请输入商品分类二级"
-                                        size="small"
-                                        style="width: 250px"
-                                />
+                                <!--<el-input-->
+                                        <!--v-model="onsaleParamsForm.secondary_category_name"-->
+                                        <!--placeholder="请选择商品分类二级"-->
+                                        <!--size="small"-->
+                                        <!--style="width: 250px"-->
+                                <!--/>-->
+                                <el-select v-model="onsaleParamsForm.secondary_category_name"
+                                           placeholder="请选择商品二级分类"
+                                           clearable
+                                           size="small"
+                                           style="width: 250px">
+                                    <el-option
+                                            v-for="item in secondary_category_name_Options"
+                                            :key="item.id"
+                                            :label="item.name"
+                                            :value="item.id"
+                                    />
+                                </el-select>
                             </el-form-item>
                             <el-form-item label="短标题" prop="short_name">
                                 <el-input
@@ -115,9 +141,9 @@
                                 <el-select v-model="onsaleParamsForm.group" placeholder="请选择分组" clearable multiple>
                                     <el-option
                                             v-for="item in groupOptions"
-                                            :key="item.name"
+                                            :key="item.id"
                                             :label="item.name"
-                                            :value="item.name" />
+                                            :value="item.id" />
                                     </el-option>
                                 </el-select>
                             </el-form-item>
@@ -226,9 +252,9 @@
                                 <el-select v-model="onsaleParamsForm.product_code" placeholder="请选择商品编码" clearable>
                                     <el-option
                                             v-for="item in product_codeOptions"
-                                            :key="item.name"
+                                            :key="item.id"
                                             :label="item.name"
-                                            :value="item.name" />
+                                            :value="item.id" />
                                     </el-option>
                                 </el-select>
                             </el-form-item>
@@ -241,12 +267,26 @@
                                 />
                             </el-form-item>
                             <el-form-item label="商品详情显示库存" prop="stock_hide" label-width="160px">
-                                <el-input
+                                <!--<el-input-->
+                                        <!--v-model="onsaleParamsForm.stock_hide"-->
+                                        <!--placeholder="商品详情显示库存"-->
+                                        <!--size="small"-->
+                                        <!--style="width: 200px"-->
+                                <!--/>-->
+                                <el-select
                                         v-model="onsaleParamsForm.stock_hide"
                                         placeholder="商品详情显示库存"
                                         size="small"
                                         style="width: 200px"
-                                />
+                                        clearable
+                                >
+                                    <el-option
+                                            v-for="item in stock_hide_Options"
+                                            :key="item.id"
+                                            :label="item.name"
+                                            :value="item.id"
+                                    />
+                                </el-select>
                             </el-form-item>
                             <el-form-item label="已出售数" prop="virtual_sales">
                                 <el-input
@@ -398,7 +438,7 @@
                                         style="width: 200px"
                                 />
                             </el-form-item>
-                            <el-form-item label="商品详情图张数" prop="detailed_diagram_num">
+                            <el-form-item label="商品详情图张数" prop="detailed_diagram_num" label-width="250">
                                 <el-input
                                         v-model="onsaleParamsForm.detailed_diagram_num"
                                         placeholder="商品详情图张数"
@@ -528,8 +568,11 @@
         data() {
             return {
                 activeName: '1',       //  对应折叠组件el-collapse的v-model，因为是accordion手风琴模式，所以应该是String类型
-                groupOptions: [],
-                product_codeOptions: [],
+                groupOptions: [],         //  存储商品分组
+                product_codeOptions: [],     //  存储商品编码
+                first_category_name_Options: [],       //  存储商品一级分类
+                secondary_category_name_Options: [],       //  存储商品二级分类
+                stock_hide_Options: [],       //  商品详情显示库存
                 onsaleParamsForm: {
                     //  设置上架商品公用信息-----设置上架商品公用信息-----设置上架商品公用信息-----设置上架商品公用信息
                     shop_id: "8",                //  店铺ID
@@ -541,8 +584,8 @@
                     sub_product_name: "成声波人电动牙刷P7",        //  商品副标题
                     main_picture_num: 1,        //  商品主图张数
                     carousel_figure_num: 2,     //  商品轮播图张数
-                    first_category_name: "日化百货",          //  商品分类一级
-                    secondary_category_name: "居家百货",     //  商品分类二级
+                    first_category_name: null,          //  商品分类一级
+                    secondary_category_name: null,     //  商品分类二级
                     short_name: "成声波人电动牙刷-多规格3个商品",         //  商品短标题
                     group: null,         //  商品分组   "小额消耗品"
                     label: "质量问题包赔",       //  商品支持
@@ -759,6 +802,7 @@
             };
         },
         created() {
+
             this.getProductinfo() ;
 
         },
@@ -768,13 +812,40 @@
             //  在进入导入商品上架Excel信息页面时加载一些基础信息
             async getProductinfo(){
                 const {data:res} = await this.$http.get("/excelOP/loading") ;
-                // console.log("res: "+res);
                 this.groupOptions = res.group ;
                 this.product_codeOptions = res.product_code ;
-                // this.ballList = res.data;  // 双色球列表数据封装
-                // console.log("ballList: "+this.ballList) ;
-                // this.total = res.numbers;  // 总双色球数封装
+                this.first_category_name_Options = res.first_category_name ;
 
+                //  设置默认时间
+                let nowDate = new Date()
+                let date = {
+                    year: nowDate.getFullYear(),
+                    month: nowDate.getMonth() + 1,
+                    date: nowDate.getDate()
+                }
+
+                if (parseInt(date.date) < 10) {
+                    date.date = '0' + date.date
+                }
+                this.onsaleParamsForm.auto_warehouse_time = date.year + '-' + date.month + '-' + date.date + ' 00:00:00'
+                this.onsaleParamsForm.activity_start_time = date.year + '-' + date.month + '-' + date.date + ' 00:00:00'
+                this.onsaleParamsForm.activity_end_time = date.year + '-' + date.month + '-' + date.date + ' 23:59:59'
+
+                // 商品详情显示库存
+                this.stock_hide_Options = [
+                    { 'id': 0, 'name': '显示' },
+                    { 'id': 1, 'name': '隐藏' },
+                ]
+
+            },
+            //  查询1级分类change事件
+            async firstCategoryChange(selValue){           // 此处selValue的值为所选择的分类对应的id
+                this.onsaleParamsForm.secondary_category_name = null;
+                this.secondary_category_name_Options = [];
+                if (selValue != null && selValue != '') {
+                    const {data:res} = await this.$http.get("/excelOP/getnextcategory?parent_id="+selValue) ;
+                    this.secondary_category_name_Options = res.secondary_category_name ;
+                }
             },
             //  重置表单内容
             resetOnsaleParamsForm(){
@@ -783,7 +854,7 @@
             },
             submitOnsaleParamsForm(){
                 //  因为提交时group是按照字符串提交的，当分组group是多选时，需要将字符串转换成单个字符才能提交到接口
-                var str = this.onsaleParamsForm.group.join(",");
+                let str = this.onsaleParamsForm.group.join(",");
                 console.log(str);
                 this.onsaleParamsForm.group = str ;
                 //  1.验证校验规则
