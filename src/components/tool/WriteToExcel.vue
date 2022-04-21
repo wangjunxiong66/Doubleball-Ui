@@ -557,7 +557,77 @@
                 <el-button icon="el-icon-refresh" size="mini" @click="resetOnsaleParamsForm">重置</el-button>
             </el-form-item>
         </el-form>
+
+        <div class="content-show">
+            <div class="content-title">
+                <h3>Excel文件内容</h3>
+            </div>
+            <el-card>
+            <!--border 边框。stripe 隔行变色。-->
+            <!--stripe属性可以创建带斑马纹的表格。它接受一个Boolean，默认为false，设置为true即为启用。-->
+                <el-table :data="excelForm" border stripe style="width: 100%">   <!-- :data="用于存放请求数据回来的数组，是对象数组" -->
+                <!--<el-table-column type="index" label="排序"></el-table-column>    &lt;!&ndash; 索引列 &ndash;&gt;-->
+                    <el-table-column label="店铺ID" prop="shop_id" width="90"></el-table-column>
+                    <el-table-column label="规格类型" prop="spec_type" width="90"></el-table-column>
+                    <el-table-column label="上架用序号" prop="issue" width="90"></el-table-column>
+                    <el-table-column label="商品类型" prop="product_type" width="90"></el-table-column>
+                    <el-table-column label="商品名称" prop="product_name" width="90"></el-table-column>
+                    <el-table-column label="商品副标题" prop="sub_product_name" width="90"></el-table-column>
+                    <el-table-column label="商品主图张数" prop="main_picture_num" width="90"></el-table-column>
+                    <el-table-column label="商品轮播图张数" prop="carousel_figure_num" width="90"></el-table-column>
+                    <el-table-column label="分类一级" prop="first_category_name" width="90"></el-table-column>
+                    <el-table-column label="分类二级" prop="secondary_category_name" width="130"></el-table-column>
+                    <el-table-column label="商品短标题" prop="short_name" width="130"></el-table-column>
+                    <el-table-column label="商品分组" prop="group" width="130"></el-table-column>
+                    <el-table-column label="商品支持" prop="label" width="130"></el-table-column>
+                    <el-table-column label="商品规格" prop="good_specification" width="130"></el-table-column>
+                    <el-table-column label="礼包内商品编码" prop="peck_gift_good_code" width="130"></el-table-column>
+                    <el-table-column label="规格" prop="product_spec" width="130"></el-table-column>
+                    <el-table-column label="子规格" prop="product_spec_item" width="130"></el-table-column>
+                    <el-table-column label="规格图张数" prop="spec_picture__num" width="130"></el-table-column>
+                    <el-table-column label="售卖价格" prop="selling_price" width="130"></el-table-column>
+                    <el-table-column label="划线价" prop="original_price" width="130"></el-table-column>
+                    <el-table-column label="成本价" prop="cost_price" width="130"></el-table-column>
+                    <el-table-column label="库存量" prop="stock" width="130"></el-table-column>
+                    <el-table-column label="库存预警" prop="stock_warning" width="130"></el-table-column>
+                    <el-table-column label="商品编码" prop="product_code" width="130"></el-table-column>
+                    <el-table-column label="商品条形码" prop="product_sn" width="130"></el-table-column>
+                    <el-table-column label="商品详情显示库存" prop="stock_hide" width="130"></el-table-column>
+                    <el-table-column label="已出售数" prop="virtual_sales" width="130"></el-table-column>
+                    <el-table-column label="商品详情显示销量" prop="sales_hide" width="130"></el-table-column>
+                    <el-table-column label="物流支持" prop="dispatch_mode" width="130"></el-table-column>
+                    <el-table-column label="快递运费" prop="express_price" width="130"></el-table-column>
+                    <el-table-column label="运费模板" prop="express_template" width="130"></el-table-column>
+                    <el-table-column label="定时下架" prop="auto_warehouse_time" width="130"></el-table-column>
+                    <el-table-column label="状态" prop="status" width="130"></el-table-column>
+                    <el-table-column label="开启限购" prop="is_buy_num_limit" width="130"></el-table-column>
+                    <el-table-column label="起购数量" prop="min_buy" width="130"></el-table-column>
+                    <el-table-column label="每人限购数量" prop="max_buy_total" width="130"></el-table-column>
+                    <el-table-column label="浏览权限" prop="browse_authority" width="130"></el-table-column>
+                    <el-table-column label="购买权限" prop="buy_authority" width="130"></el-table-column>
+                    <el-table-column label="参与会员权益" prop="join_member_discount" width="130"></el-table-column>
+                    <el-table-column label="推广图文件名" prop="promotion_diagram_name" width="130"></el-table-column>
+                    <el-table-column label="推广图链接" prop="promotion_diagram_link" width="130"></el-table-column>
+                    <el-table-column label="推广图会员等级是否展示" prop="promotion_diagram_degree" width="130"></el-table-column>
+                    <el-table-column label="商品详情图张数" prop="detailed_diagram_num" width="130"></el-table-column>
+                    <el-table-column label="授权图文件名" prop="authorize_diagram_name" width="130"></el-table-column>
+                    <el-table-column label="公用图文件名" prop="common_diagram_name" width="130"></el-table-column>
+                    <el-table-column label="活动名称" prop="activity_name" width="130"></el-table-column>
+                    <el-table-column label="活动开始时间" prop="activity_start_time" width="130"></el-table-column>
+                    <el-table-column label="活动结束时间" prop="activity_end_time" width="130"></el-table-column>
+                    <el-table-column label="活动渠道" prop="activity_channel" width="130"></el-table-column>
+                    <el-table-column label="规则1活动对象" prop="activity_object" width="130"></el-table-column>
+                    <el-table-column label="规则1会员等级" prop="member_degree" width="130"></el-table-column>
+                    <el-table-column label="规则1最大积分抵扣" prop="credit" width="130"></el-table-column>
+                    <el-table-column label="规则1允许多件累计抵扣" prop="allow_accumulate" width="130"></el-table-column>
+                </el-table>
+
+            </el-card>
+
+        </div>
+
     </div>
+
 </template>
 
 <script>
@@ -799,6 +869,71 @@
                         {required: true, message: '请输入规则1允许多件累计抵扣', trigger: 'blur'}
                     ]
                 },
+                excelForm: [],
+                excelForm1: [{
+                    //  设置上架商品公用信息-----设置上架商品公用信息-----设置上架商品公用信息-----设置上架商品公用信息
+                    shop_id: null,                //  店铺ID
+                    spec_type: null,      //  规格类型
+                    issue: null,         //  上架用序号
+                    //  基础信息-----基础信息-----基础信息-----基础信息-----基础信息-----基础信息-----基础信息
+                    product_type: null,     //  商品类型
+                    product_name: null,      //  商品名称
+                    sub_product_name: null,        //  商品副标题
+                    main_picture_num: null,        //  商品主图张数
+                    carousel_figure_num: null,     //  商品轮播图张数
+                    first_category_name: null,          //  商品分类一级
+                    secondary_category_name: null,     //  商品分类二级
+                    short_name: null,         //  商品短标题
+                    group: null,         //  商品分组   "小额消耗品"
+                    label: null,       //  商品支持
+                    //  价格库存-----价格库存-----价格库存-----价格库存-----价格库存-----价格库存-----价格库存
+                    good_specification: null,        //  商品规格
+                    peck_gift_good_code: null,        //  礼包内商品编码
+                    product_spec: null,        //  规格
+                    product_spec_item: null,      //  子规格
+                    spec_picture__num: null,     //  规格图张数
+                    selling_price: null,           //  售卖价格
+                    original_price: null,      //  划线价
+                    cost_price: null,     //  成本价
+                    stock: null,      //  库存量
+                    stock_warning: null,       //  库存预警
+                    product_code: null,       //  商品编码
+                    product_sn: null,        //  商品条形码
+                    stock_hide: null,        //  商品详情显示库存，显示或隐藏
+                    virtual_sales: null,        //  已出售数
+                    sales_hide: null,         //  商品详情显示销量，显示或隐藏
+                    //  物流设置-----物流设置-----物流设置-----物流设置-----物流设置-----物流设置-----物流设置
+                    dispatch_mode: null,       //  物流支持，快递发货、同城配送、上门自提
+                    express_price: null,        //  快递运费，“统一运费”或者“运费模板”
+                    express_template: null,       //  运费模板，取自数据库
+                    //  其他设置-----其他设置-----其他设置-----其他设置-----其他设置-----其他设置-----其他设置
+                    auto_warehouse_time: null,         //  定时下架
+                    status: null,        //  状态，上架售卖、上架隐藏、定时上架、放置仓库
+                    is_buy_num_limit: null,      //  开启限购，是或否
+                    min_buy: null,        //  起购数量
+                    max_buy_total: null,       //  每人限购数量
+                    browse_authority: null,         //  浏览权限
+                    buy_authority: null,        //  购买权限
+                    join_member_discount: null,       //  参与会员权益，会员卡、会员价、会员等级折扣
+                    //  商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情
+                    promotion_diagram_name: null,       //  推广图文件名
+                    promotion_diagram_link: null,         //  推广图链接
+                    promotion_diagram_degree: null,       //  推广图会员等级是否展示
+                    detailed_diagram_num: null,      //  商品详情图张数
+                    authorize_diagram_name: null,        //  授权图文件名
+                    common_diagram_name: null,         //  公用图文件名
+
+                    //  积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置-----积分抵扣活动设置
+                    activity_name: null,    //  活动名称
+                    activity_start_time: null,          //  活动开始时间
+                    activity_end_time: null,            //  活动结束时间
+                    activity_channel: null,    //  活动渠道
+                    //  规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置
+                    activity_object: null,         //  规则1活动对象，全部会员、会员等级、会员标签
+                    member_degree: null,        //  规则1会员等级
+                    credit: null,        //  规则1最大积分抵扣
+                    allow_accumulate: null,        //  规则1允许多件累计抵扣
+                }],
             };
         },
         created() {
@@ -815,6 +950,7 @@
                 this.groupOptions = res.group ;
                 this.product_codeOptions = res.product_code ;
                 this.first_category_name_Options = res.first_category_name ;
+                this.excelForm = res.excelForm ;
 
                 //  设置默认时间
                 let nowDate = new Date()
@@ -866,8 +1002,8 @@
                     if (res.code=="1"){
                         //  弹出提示信息
                         this.$message.success("写入Excel成功！");
-                        //  setTimeout() 方法用于在指定的毫秒数后调用函数或计算表达式。
-                        //  此处设置延迟，待写入Excel后刷新页面
+                         // setTimeout() 方法用于在指定的毫秒数后调用函数或计算表达式。
+                         // 此处设置延迟，待写入Excel后刷新页面
                         setTimeout(() => {
                             //  this.$router.push({path:"/home"})或者 this.$router.push("/home")用来在点击按钮时跳转到路径"/home"指定的vue模块
                             this.$router.push({path:"/writetoexcel"});  //  页面路由跳转
