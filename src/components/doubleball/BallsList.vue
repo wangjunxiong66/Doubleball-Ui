@@ -33,17 +33,17 @@
             <!--stripe属性可以创建带斑马纹的表格。它接受一个Boolean，默认为false，设置为true即为启用。-->
             <el-table :data="ballList" border stripe style="width: 100%">   <!-- :data="用于存放请求数据回来的数组，是对象数组" -->
                 <!--<el-table-column type="index" label="排序"></el-table-column>    &lt;!&ndash; 索引列 &ndash;&gt;-->
-                <el-table-column label="序号" prop="id" width="90"></el-table-column>
-                <el-table-column label="期号" prop="issue" width="90"></el-table-column>
-                <el-table-column label="红球一" prop="red_one" width="90"></el-table-column>
-                <el-table-column label="红球二" prop="red_two" width="90"></el-table-column>
-                <el-table-column label="红球三" prop="red_three" width="90"></el-table-column>
-                <el-table-column label="红球四" prop="red_four" width="90"></el-table-column>
-                <el-table-column label="红球五" prop="red_five" width="90"></el-table-column>
-                <el-table-column label="红球六" prop="red_six" width="90"></el-table-column>
-                <el-table-column label="蓝球" prop="blue" width="90"></el-table-column>
-                <el-table-column label="开奖日期" prop="draw_prize_date" width="130"></el-table-column>
-                <el-table-column label="操作">   <!--自定义插槽-->
+                <el-table-column label="序号" prop="id" width="90" align="center"></el-table-column>
+                <el-table-column label="期号" prop="issue" width="90" align="center"></el-table-column>
+                <el-table-column label="红球一" prop="red_one" width="90" align="center"></el-table-column>
+                <el-table-column label="红球二" prop="red_two" width="90" align="center"></el-table-column>
+                <el-table-column label="红球三" prop="red_three" width="90" align="center"></el-table-column>
+                <el-table-column label="红球四" prop="red_four" width="90" align="center"></el-table-column>
+                <el-table-column label="红球五" prop="red_five" width="90" align="center"></el-table-column>
+                <el-table-column label="红球六" prop="red_six" width="90" align="center"></el-table-column>
+                <el-table-column label="蓝球" prop="blue" width="90" align="center"></el-table-column>
+                <el-table-column label="开奖日期" prop="draw_prize_date" width="130" align="center"></el-table-column>
+                <el-table-column label="操作" align="center">   <!--自定义插槽-->
                     <template slot-scope="scope">
                         <!--修改-->
                         <el-button type="primary" icon="el-icon-edit" size="mini" @click="showEditDialog(scope.row.id)"></el-button>

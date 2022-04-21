@@ -109,21 +109,21 @@
             <!--stripe属性可以创建带斑马纹的表格。它接受一个Boolean，默认为false，设置为true即为启用。-->
             <el-table :data="poemList" border stripe style="width: 100%">   <!-- :data="用于存放请求数据回来的数组，是对象数组" -->
                 <!--<el-table-column type="index" label="排序"></el-table-column>    &lt;!&ndash; 索引列 &ndash;&gt;-->
-                <el-table-column label="序号" prop="id" width="60"></el-table-column>
-                <el-table-column label="名称" prop="title" width="100"></el-table-column>
-                <el-table-column label="作者" prop="author" width="100"></el-table-column>
-                <el-table-column label="朝代" prop="dynasty" width="60"></el-table-column>
-                <el-table-column label="诗歌类别" prop="category" width="100"></el-table-column>
-                <el-table-column label="内容" width="180">
+                <el-table-column label="序号" prop="id" width="60" align="center"></el-table-column>
+                <el-table-column label="名称" prop="title" width="100" align="center"></el-table-column>
+                <el-table-column label="作者" prop="author" width="100" align="center"></el-table-column>
+                <el-table-column label="朝代" prop="dynasty" width="60" align="center"></el-table-column>
+                <el-table-column label="诗歌类别" prop="category" width="100" align="center"></el-table-column>
+                <el-table-column label="内容" width="180" align="center">
                     <!--回车换行符号"\r\n"替换为"<br/>"，<br/>是html的标签，表示文本另起一行。-->
                     <template slot-scope="scope">
                         <div v-html="scope.row.content.replace(/[\r\n]/g,'<br/>')"></div>
                     </template>
                 </el-table-column>
-                <el-table-column label="注释" prop="comment" width="180"></el-table-column>
-                <el-table-column label="创建时间" prop="create_time" width="90"></el-table-column>
-                <el-table-column label="更新时间" prop="update_time" width="90"></el-table-column>
-                <el-table-column label="操作">   <!--自定义插槽-->
+                <el-table-column label="注释" prop="comment" width="180" align="center"></el-table-column>
+                <el-table-column label="创建时间" prop="create_time" width="90" align="center"></el-table-column>
+                <el-table-column label="更新时间" prop="update_time" width="90" align="center"></el-table-column>
+                <el-table-column label="操作"  align="center">   <!--自定义插槽-->
                     <template slot-scope="scope">
                         <!--修改-->
                         <el-button type="primary" icon="el-icon-edit" size="mini" @click="showEditDialog(scope.row.id)"></el-button>
