@@ -613,9 +613,7 @@
                     <el-table-column label="规则1最大积分抵扣" prop="credit" width="130" align="center"></el-table-column>
                     <el-table-column label="规则1允许多件累计抵扣" prop="allow_accumulate" width="130" align="center"></el-table-column>
                 </el-table>
-
             </el-card>
-
         </div>
 
     </div>
@@ -930,7 +928,6 @@
             };
         },
         created() {
-
             this.getProductinfo() ;
 
         },
@@ -1008,12 +1005,14 @@
                         setTimeout(() => {
                             //  this.$router.push({path:"/home"})或者 this.$router.push("/home")用来在点击按钮时跳转到路径"/home"指定的vue模块
                             // this.$router.push({path:"/writetoexcel"});  //  页面路由跳转
-                            window.location.reload();    //  刷新当前页面
+                            // window.location.reload();    //  刷新当前页面
+                            this.getProductinfo() ;
                         }, 3000)
                     }else {
                         this.$message.error("写入Excel失败！");
                     }
                 })
+
             },
 
         }
