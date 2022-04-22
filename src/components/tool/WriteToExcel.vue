@@ -667,7 +667,7 @@
                     virtual_sales: "20",        //  已出售数
                     sales_hide: "隐藏",         //  商品详情显示销量，显示或隐藏
                     //  物流设置-----物流设置-----物流设置-----物流设置-----物流设置-----物流设置-----物流设置
-                    dispatch_mode: "快递发货",       //  物流支持，快递发货、同城配送、上门自提
+                    dispatch_mode: "快递发货,同城配送,上门自提",       //  物流支持，快递发货、同城配送、上门自提
                     express_price: "运费模板/统一运费",        //  快递运费，“统一运费”或者“运费模板”
                     express_template: "全国一件包邮运费模板/统一运费价格",       //  运费模板，取自数据库
                     //  其他设置-----其他设置-----其他设置-----其他设置-----其他设置-----其他设置-----其他设置
@@ -676,13 +676,13 @@
                     is_buy_num_limit: "是",      //  开启限购，是或否
                     min_buy: "3",        //  起购数量
                     max_buy_total: "100",       //  每人限购数量
-                    browse_authority: "普通会员",         //  浏览权限
-                    buy_authority: "会员",        //  购买权限
-                    join_member_discount: "会员卡",       //  参与会员权益，会员卡、会员价、会员等级折扣
+                    browse_authority: "会员,VIP会员,普通会员,白丁,金选会员",         //  浏览权限
+                    buy_authority: "会员,VIP会员,普通会员,白丁,金选会员",        //  购买权限
+                    join_member_discount: "会员卡,会员价,会员等级折扣",       //  参与会员权益，会员卡、会员价、会员等级折扣
                     //  商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情-----商品详情
                     promotion_diagram_name: "tgt1.png",       //  推广图文件名
                     promotion_diagram_link: "http://www.baidu.com",         //  推广图链接
-                    promotion_diagram_degree: "全部会员",       //  推广图会员等级是否展示
+                    promotion_diagram_degree: "全部会员/会员,VIP会员,普通会员,白丁,金选会员",       //  推广图会员等级是否展示
                     detailed_diagram_num:  2,      //  商品详情图张数
                     authorize_diagram_name: "sqt1.jpg",        //  授权图文件名
                     common_diagram_name: "gyt1.png",         //  公用图文件名
@@ -693,8 +693,8 @@
                     activity_end_time: "",            //  活动结束时间
                     activity_channel: "H5",    //  活动渠道
                     //  规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置-----规则设置
-                    activity_object: "会员等级",         //  规则1活动对象，全部会员、会员等级、会员标签
-                    member_degree: "会员",        //  规则1会员等级
+                    activity_object: "全部会员/会员等级/会员标签",         //  规则1活动对象，全部会员、会员等级、会员标签
+                    member_degree: "/会员,VIP会员,普通会员,白丁,金选会员/女神节标签B/女神节标签A/未曾有币/仍有债权",        //  规则1会员等级
                     credit: "500",        //  规则1最大积分抵扣
                     allow_accumulate: "是",        //  规则1允许多件累计抵扣
                 },
@@ -1005,8 +1005,8 @@
                         setTimeout(() => {
                             //  this.$router.push({path:"/home"})或者 this.$router.push("/home")用来在点击按钮时跳转到路径"/home"指定的vue模块
                             // this.$router.push({path:"/writetoexcel"});  //  页面路由跳转
-                            // window.location.reload();    //  刷新当前页面
-                            this.getProductinfo() ;
+                            window.location.reload();    //  刷新当前页面
+                            // this.getProductinfo() ;
                         }, 3000)
                     }else {
                         this.$message.error("写入Excel失败！");
