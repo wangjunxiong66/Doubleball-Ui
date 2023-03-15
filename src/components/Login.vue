@@ -18,8 +18,8 @@
                 </el-form-item>
                 <!-- 密码。label 用于显示文案的标签，prop处是rules校验标签的名字 -->
                 <!-- 此处不使用<el-form-item label="密码">，而是使用下面的方式，主要是为了让文案样式统一。slot 插槽相当于一个占位符，当没有内容传递过去的时候会显示插槽的内容，有内容时不会显示插槽的内容。此处名字必须使用"label"，因为要与<el-form-item label="">中的label保持一致，否则不会被覆盖-->
-                <el-form-item prop="password">
-                    <template slot="label"><span v-html="'密&nbsp;&nbsp;&nbsp;码'"></span></template>
+                <el-form-item label="密 码" prop="password">
+                    <!--<template slot="label"><span v-html="'密&nbsp;&nbsp;&nbsp;码'"></span></template>-->
                     <!-- 将密码输入框设置为 type="password"，是为了在前端显示中将密码输入框中数据显示为"******"-->
                     <el-input v-model="loginForm.password" prefix-icon="iconfont icon-mima" type="password"  style="width: 85%"></el-input>
                 </el-form-item>

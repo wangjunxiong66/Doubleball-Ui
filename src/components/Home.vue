@@ -92,6 +92,7 @@
                     '400': 'iconfont icon-Sportsentertainment',
                     '401': 'iconfont icon-yinliao1',
                     '402': 'iconfont icon-yinliao1',
+                    '403': 'iconfont icon-shangpin',
                 },
                 activePath:'/welcome',  // 默认路径
             }
